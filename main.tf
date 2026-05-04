@@ -3,14 +3,10 @@ data "aws_vpc" "selected" {
 }
 
 data "aws_subnets" "available-subnets" {
-    filter {
-        name   = "tag:Name"
-        values = ["Our-Public-*"]
-    }
-    filter {
-        name   = "vpc-id"
-        values = [data.aws_vpc.selected.id]
-    }
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.selected.id]
+  }
 }
 
 resource "aws_eks_cluster" "project-cluster" {
